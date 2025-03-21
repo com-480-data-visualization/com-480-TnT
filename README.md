@@ -42,6 +42,18 @@ This visualization will provide insights into the factors shaping musical taste 
 
 See jupyter notebook. We only explore the main datasets as we are not sure to use our backups.
 
+We merged the two spotify datasets together which results in 11'293'758 entries and 6894 unique songs. Since the spotify charts dataset contains multiple times a single song for each of each it position in the charts (i.e., as the song moves through the ranks) in each of the countries in which the song got in the charts and the spotify tracks dataset containes multiple times the same song for each of its genre, then a song will appear multiple times in the merge dataset. We keep it that way for now as we don't know exactly know what we will do with it and thus it might be preferable to keep it that way.
+
+Let's now see some statistics
+
+- The dataset countains song in the carts for 70 different countries. Here is the distribution of the amount of (unique) songs per country for the top 10 countries (in percent of total unique songs) ![songs per country](songs_per_country.png) 
+- The average number of genre per song is 1.45. 
+- The datasets contains 110 different genres. The top 10 genres with the most songs are ![songs per genre](songs_per_genre.png)
+- The dataset contains only songs from the top200 songs.
+- Overall, the dataset does not contain a lot of NaNs. Actually, only the `streams` column contains NaNs (around 16%) which we don't really care about. Here is the complete plot ![NaNs per column](nans_per_column.png)
+
+A lot of the column contain information about the song such as its valence, acousticness, danceability, etc... which might be super interessant for our analysis.
+
 ### Related Work
 
 Previous studies have explored music genre classification and recommendation systems. Some inspiring visualizations include:
