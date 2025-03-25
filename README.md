@@ -1,6 +1,6 @@
 Com-480 Data Visualization Course, EPFL. 
 
-Project page of group TnT (Théo & Théo)
+Project page of group TnT (Théo & Théo) and Caro en fait!
 
 ## Milestone 1
 
