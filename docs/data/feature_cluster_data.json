@@ -1,0 +1,29 @@
+{
+  "nodes": [
+    { "name": "Adam" , "color":0},
+    { "name": "Bob" , "color":1},
+    { "name": "Carrie", "color":0 },
+    { "name": "Donovan" , "color":0},
+    { "name": "Edward", "color":1 },
+    { "name": "Felicity", "color":0 },
+    { "name": "George" , "color":2},
+    { "name": "Hannah" , "color":2},
+    { "name": "Iris" , "color":1},
+    { "name": "Jerry", "color":1 }
+  ],
+  "edges": [
+    { "source": 0, "target": 1 },
+    { "source": 0, "target": 2 },
+    { "source": 0, "target": 3 },
+    { "source": 0, "target": 4 },
+    { "source": 1, "target": 5 },
+    { "source": 2, "target": 5 },
+    { "source": 2, "target": 5 },
+    { "source": 3, "target": 4 },
+    { "source": 5, "target": 8 },
+    { "source": 5, "target": 9 },
+    { "source": 6, "target": 7 },
+    { "source": 7, "target": 8 },
+    { "source": 8, "target": 9 }
+  ]
+}

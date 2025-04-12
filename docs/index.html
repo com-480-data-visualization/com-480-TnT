@@ -1,24 +1,402 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+<script src="lib/d3.v7.min.js"></script>
+<script src="lib/d3-geo-projection.min.js"></script>
+<script src="js/map.js"></script>
+<script src="js/csv_functions.js"></script>
+<script src="js/main.js"></script>
+<script src="js/official_lang.js"></script>
+<script src="js/genealogies.js"></script>
+<script src="js/color_categories.js"></script>
+<script src="js/sentence_order.js"></script>
+<script src="js/vowel_ratio.js"></script>
+<script src="js/feature_clusters.js"></script>
+<script src="js/syntax_title_animation.js"></script>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Web Page</title>
-<body>
-    <header>
-        <h1>Welcome to My Web Page</h1>
-    </header>
-    <main>
-        <section>
-            <h2>About Me</h2>
-            <p>This is a brief introduction about myself.</p>
-        </section>
-        <section>
-            <h2>My Projects</h2>
-            <p>Here are some of my projects.</p>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2023 My Web Page</p>
-    </footer>
+  <meta charset="utf-8">
+  <title>Home</title>
+  <meta name="generator" content="GrapesJS Studio">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta property="og:type" content="website">
+  <meta name="robots" content="index,follow">
+  <link rel="icon" type="image.jpeg" href="assets/placeholder.jpeg">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/countries.css">
+</head>
+
+<body id="wals-body">
+
+  <!-- Section 1 - Welcome -->
+  <section id="welcome-row" class="gjs-grid-row">
+    <div id="welcome-col" class="gjs-grid-column">
+
+      <img id="welcome-svg" src="assets/mockups/welcome_page.svg"></img>
+
+      <div style="position: absolute; top: 0px; right: 20px;">
+        <a href="./about.html">About</a>
+      </div>
+
+      <div class="scroll_blinking_text">
+        Scroll down to explore the World of Languages.
+      </div>
+    </div>
+  </section>
+  <div id="igb0o2" class="gjs-divider"></div>
+
+
+  <!-- Section 2 - Official Languages -->
+
+  <section id="officiallang-row-intro" class="gjs-grid-row">
+    <div id="officiallang-col-intro" class="gjs-grid-column">
+
+      <div style="position: relative; float: left; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      width: 50%;">
+        <div id="officiallang-intro-title" class="intro-section-title">
+          Official Languages
+        </div>
+        <p style="font-size: 1.5em;" align="justify">
+          An Official Language is a language having certain rights to be
+          used in defined situations. These rights can be created in written
+          form or by historic usage. 178 countries recognize an official
+          language, 101 of them recognizing more than one.
+
+          <br>
+          <br>
+          <em>Scroll down to explore official languages from around the world.</em>
+        </p>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <section id="officiallang-row" class="gjs-grid-row">
+    <div id="officiallang-col" class="gjs-grid-column">
+
+      <div id="officiallang-title">
+        Official<br>Languages
+      </div>
+
+      <div style="position: absolute; left: 10px; top:25%; width: 15em; font-size: 1.5em; color: #102c57ff">
+        <em>Click on a country to explore its official language(s).</em>
+      </div>
+
+      <div id="oficiallang-description" style="position: absolute; bottom: 10%; left: 10px; width: 300px">
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- Section 3 - Genealogies -->
+  <section id="genealogy-row-intro" class="gjs-grid-row">
+    <div id="genealogy-col-intro" class="gjs-grid-column">
+
+      <div style="position: relative; float: left; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      width: 50%;">
+        <div class="intro-section-title">
+          Language genealogy
+        </div>
+        <p style="font-size: 1.5em;" align="justify">
+          Language genealogy is the study of the historical relationships between
+          languages, tracing their evolution over time. Much like a family tree,
+          languages can be grouped into families based on shared ancestry.
+          For example, the Romance languages (Spanish, French,
+          Italian, etc.) all descend from Latin.
+          <br>
+          <br>
+          This fascinating field illuminates the connections between cultures and
+          the ways human communication has evolved.
+          <br>
+          <br>
+          Below you can try to play with our hierarchical sunburst diagram (area &rarr; family &rarr; genus &rarr; language) and
+          explore
+          language families and genuses while keeping an eye on their geographical location on the world map!
+          <br>
+          <br>
+          <em>Click on the sunburst diagram items to zoom in or in the empty center to zoom out!</em>
+          <br>
+          <br>
+          <em>Scroll down to explore the genealogy of languages.</em>
+        </p>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section id="genealogy-row" class="gjs-grid-row">
+    <div id="genealogy-col" class="gjs-grid-column">
+      <div id="genealogy-title">
+        Language <br> genealogy
+      </div>
+      <div style="font-size: 1.7em; position: absolute; bottom: 20px; left: 3%; color:#102c57ff">
+        <em> Click on the sunburst! <br>
+          Click on the map for country details! </em> 
+      </div>
+      <!-- Tooltip for showing information -->
+      <div id="genealogy-tooltip" class="tooltip hidden">
+        <p><strong><span id="genealogy-tooltip-country"></span></strong></p>
+        <span id="genealogy-tooltip-languages"></span></p>
+      </div>
+      <!-- Javascript logic takes on here :p -->
+    </div>
+  </section>
+
+
+  <!-- Section 4 - Color categories -->
+  <section class="gjs-grid-row" id="colorcategories-intro-row">
+    <div class="gjs-grid-column" id="colorcategories-intro-col">
+
+      <div style="position: relative; float: left; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      width: 50%;">
+        <div class="intro-section-title">
+          What Color <br> is <text class="title_changing_color_text">this?</text>
+        </div>
+        <p style="font-size: 1.5em;" align="justify">
+          In English, we use White, Red, Yellow, Green, Blue and Black to refer to
+          the six basic colors. But not all languages describe colors this way.
+          For example, in Australia the Warlpiri language merges Blue and Green
+          together.
+          <br>
+          <br>
+          <em>
+            Scroll to the next section to explore what are the basic color terms of 
+            different languages across the world.
+          </em>
+        </p>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section class="gjs-grid-row" id="colorcategories-row">
+    <div class="gjs-grid-column" id="colorcategories-col">
+
+      <!-- Tooltip for showing information -->
+      <div id="colorcategories-tooltip" class="tooltip hidden">
+        <p><strong><span id="colorcategories-tooltip-country"></span></strong></p>
+        <span id="colorcategories-tooltip-languages"></span></p>
+      </div>
+
+      <div id="colorcategories-title">
+        What Color <br> is <text class="title_changing_color_text">this?</text>
+      </div>
+
+      <div style="position: absolute; top: 25%; width: 300px; left:5%;">
+        <p id="color-categories-text" style="font-size: 1.5em;">
+          <em>Click on the buttons to see which languages show the different color
+            categorizations.</em>
+            <br>
+          Information is unavailable for the languages in the gray countries.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Section 5 - Sentence order -->
+
+  <section id="order-row-intro" class="gjs-grid-row">
+    <div id="sentenceorder-col-intro" class="gjs-grid-column">
+
+      <div style="position: relative; float: left; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      width: 50%;">
+        <div id="syntax-puzzles-title" class="intro-section-title">
+          Syntax Puzzles
+        </div>
+        <p style="font-size: 1.5em;" align="justify">
+          Languages around the world present different ordering of the
+          sentence elements, for example in English, the Subject comes
+          first, followed by the Verb and the Object. Other languages
+          may use other ways to compose a sentence.
+          <br>
+          <br>
+          <em>Scroll down to solve the syntax puzzles and explore different
+            ways with which languages form sentences.</em>
+        </p>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <section class="gjs-grid-row" id="order-row">
+    <div class="gjs-grid-column" id="sentenceorder-col">
+
+      <!-- Tooltip for showing information -->
+      <div id="sentenceorder-tooltip" class="tooltip hidden">
+        <p><strong><span id="sentenceorder-tooltip-country"></span></strong></p>
+        <span id="sentenceorder-tooltip-languages"></span></p>
+      </div>
+
+      <div id="order-title">
+        Syntax Puzzles
+      </div>
+
+      <div style="position: absolute; top: 25%; width: 350px; left:5%;">
+        <p id="fun-fact-text" style="font-size: 1.5em;">
+          <em>Arrange the words to form a sentence and discover which languages
+            follow that structure. Double a word click to reset it.</em>
+        </p>
+      </div>
+
+      <div style="display:flex; text-align: center;position:absolute; bottom: 25%; left: 5%;">
+
+        <div style="margin:0 auto;">
+          <div style="display:table;">
+
+            <div style="display: table-row; vertical-align: middle; text-align: center;">
+
+              <div style="display: table-cell;">
+                <p id="first_word_recepient_text" style="height: 20px;"></p>
+                <div id="first_word_recepient" class="word-recipient-area"></div>
+              </div>
+
+              <div style="display: table-cell; vertical-align: middle;">
+                <p id="second_word_recepient_text" style="height: 20px;"></p>
+                <div id="second_word_recepient" class="word-recipient-area"></div>
+              </div>
+
+              <div style="display: table-cell; vertical-align: middle;">
+                <p id="third_word_recepient_text" style="height: 20px;"></p>
+                <div id="third_word_recepient" class="word-recipient-area"></div>
+              </div>
+
+            </div>
+
+            <br>
+
+            <div style="display: table-row;">
+              <div id="subject-original-container"
+                style="display: table-cell; text-align: center; vertical-align: middle;">
+                <span id="drop-word-subject" class="word-test-button" draggable="true">John</span>
+              </div>
+
+              <div id="verb-original-container" style="display: table-cell;text-align: center; vertical-align: middle;">
+                <span id="drop-word-verb" class="word-test-button" draggable="true">plays</span>
+              </div>
+
+              <div id="object-original-container"
+                style="display: table-cell;text-align: center; vertical-align: middle;">
+                <span id="drop-word-object" class="word-test-button" draggable="true">football</span>
+              </div>
+            </div>
+
+          </div>
+          <!-- <p align="left" style="width:370px;">
+            <em>
+              <small>
+                <em>Drag and drop each word to a box.
+                  <br>
+                  Double a word click to reset it.</em>
+              </small>
+            </em>
+          </p> -->
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <div class="gjs-divider" id="iy3sf"></div>
+
+
+  <!-- Section 6 - Consonant to vowel ratio -->
+  <section class="gjs-grid-row" id="colorcategories-intro-row">
+    <div class="gjs-grid-column" id="colorcategories-intro-col">
+
+      <div style="position: relative; float: left; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      width: 50%;">
+        <div class="intro-section-title">
+          The sounds of a<br>Language
+        </div>
+        <p style="font-size: 1.5em;" align="justify">
+          The sounds of a language, their phonemes, are the building blocks of words. Fundamentaly, they are
+          divided into two categories: consonants and vowels. In the next section, you can explore how many vowels and
+          consonants are present in the languages of the world, as well as the ratio between them. Also, adding to
+          the vowels, you can see the presence of tones in the languages.
+        </p>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section id="vowel-row" class="gjs-grid-row">
+    <div id="vowel-col" class="gjs-grid-column">
+
+      <!-- Tooltip for showing information -->
+      <div id="vowel-tooltip" class="tooltip hidden">
+        <p><strong><span id="vowel-tooltip-country"></span></strong></p>
+        <span id="vowel-tooltip-languages"></span></p>
+      </div>
+
+      <div id="vowel-title">
+        The sounds of a<br>Language
+      </div>
+
+      <div style="position: absolute; left: 10px; top:17.5%; width: 20em;">
+        <p style="font-size: 1.5em;">
+          <em>Click in the buttons to explore the sound characteristics of the languages.</em>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="gjs-divider" id="ixjor"></div>
+
+  <section id="cluster-row-intro" class="gjs-grid-row">
+    <div id="cluster-col-intro" class="gjs-grid-column">
+
+      <div style="position: relative; float: left; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      width: 50%;">
+        <div id="cluster-intro-title" class="intro-section-title">
+          Languages Beyond<br><b>Borders</b>
+        </div>
+        <p style="font-size: 1.5em;" align="justify">
+          Languages may be separated by large geographical distances.
+          But how close are they based on their <b>Morphology</b>?
+
+          <br>
+          <br>
+          <em>Scroll down to explore the morphological similarity 
+            between languages.</em>
+        </p>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section id="cluster-row" class="gjs-grid-row">
+    <div id="cluster-col" class="gjs-grid-column">
+
+      <div id="cluster-title">
+        Languages Beyond<br><b>Borders</b>
+      </div>
+
+      <div style="position: absolute; top: 25%; width: 350px; left:5%;">
+        <p id="fun-fact-text" style="font-size: 1.5em;">
+          Language similarity based on their internal structure of words,
+          <b>Morphology.</b>
+          <br>
+          <br>
+          <em>Interact with the groups' central node to unveal the geographical areas
+            of the group's languages.
+          </em>
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+</body>
+
 </html>
