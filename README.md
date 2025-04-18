@@ -97,6 +97,8 @@ Clicking on a country reveals two things:
 
 ## Visualisation 3: Most Used Words in Lyrics
 This visualization aims to explore the most frequently used words in song lyrics, based on selected filters. Users will be able to choose filters such as music genre, artist gender, or time period, and the graph will update accordingly to highlight the dominant vocabulary. For example, selecting rap and male artists will show the most common words used in that subset of songs, while switching to pop and female artists will reveal a different set of lyrical trends. The goal is to uncover how themes, expressions, or vocabulary vary across genres, genders, and eras — providing a linguistic portrait of modern music.
+![Image3](https://github.com/user-attachments/assets/9cd559a3-5913-4fb5-a29a-617b8f39487d) (this image has been generated using chatgpt)
+
 
 ## Extra Ideas
 ### Explore Page:
