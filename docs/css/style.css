@@ -50,10 +50,14 @@ img {
     margin-right: 10px;
     text-decoration: none;
 }
-.nav-button:visited {
+.nav-button {
     color: white;
     text-decoration: none;
     height: 100%;
+}
+.nav-button:visited {
+    color: white;
+    text-decoration: none;
 }
 .nav-button:hover {
     text-decoration: none;
