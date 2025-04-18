@@ -4,7 +4,8 @@ html {
 
 section {
     height: 100vh;
-    scroll-snap-align: start;
+    padding-top: 60px;
+    scroll-snap-align: end;
     scroll-snap-stop: always;
     background-color: #fefaf6ff;
 }
@@ -16,208 +17,88 @@ img {
     width: 100vw;
 }
 
-* {
-    box-sizing: border-box;
+#nav-bar {
+    position: fixed;
+    top: 0;
+    left: 0; 
+    right: 0; 
+    background-color: 
+    rgb(145, 145, 145); 
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between; 
+    color: white;
+    height: 60px;
+}
+
+/* Title button of the nav-bar styling */
+.title:visited {
+    color: white;
+    text-decoration: none;
+}
+.title:link {
+    text-decoration: none;
+    color: white;
+}
+
+/* Navigation bar button styling */
+.nav-button:link {
+    height: 60px;
+    padding: 15px;
+    align-items: center;
+    font-size: 1.25em;  
+    margin-right: 10px;
+    text-decoration: none;
+}
+.nav-button:visited {
+    color: white;
+    text-decoration: none;
+    height: 100%;
+}
+.nav-button:hover {
+    text-decoration: none;
+    background-color: #475569;
+}
+
+/* Team members styling */
+.member {
+    margin-left: 10px;
+}
+.member:link {
+    text-decoration: none;
+    font-size: 1.25em;
+    color: wheat;
+}
+.member:hover {
+    text-decoration: underline;
+}
+.member:visited {
+    color: black;
+}
+
+
+#welcome-row {
+    padding-top: 60px;
+    flex: 1;
+}
+
+#welcome-row p {
+    text-align: center;
+    text-align: left;
 }
 
 body {
     margin: 0;
 }
 
-h1 {
-    color: #102c57ff;
-    font-size: 2.5em;
-}
-
-p {
-    color: #102c57ff;
-}
-
 span {
     color: #102c57ff;
 }
 
-a:link {
-    color: #102c57ff;
-    font-size: 1.25em;
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
-a:visited {
-    color: #102c57ff;
-    text-decoration: none;
-}
-
-.intro-section-title{
-    font: 4em Helvetica;
-    color: #102c57ff;
-}
-
-#officiallang-title{
-    position: absolute;
-    top: 10px; 
-    left: 10px;
-    font: 64px Helvetica;
-    color: #102c57ff;
-}
-
-#genealogy-title{
-    font: 64px Helvetica; 
-    position: absolute; 
-    top: 10px; 
-    left: 3%;
-    color: #102c57ff;
-}
-
-#colorcategories-title{
-    font: 64px Helvetica; 
-    position: absolute; 
-    top: 10px; 
-    left: 5%;
-    color: #102c57ff;
-}
-
-#order-title{
-    font: 4em Helvetica; 
-    position: absolute; 
-    top: 10px; 
-    left: 5%;
-    color: #102c57ff;
-}
-
-#vowel-title{
-    font: 4em Helvetica; 
-    position: absolute; 
-    top: 10px;
-    left: 10px;
-    color: #102c57ff;
-}
-
-#cluster-title{
-    font: 64px Helvetica; 
-    position: absolute; 
-    top: 10px; 
-    left: 5%;
-    color: #102c57ff;
-}
 
 .gjs-grid-column {
     flex: 1 1 0%;
-    padding: 5px 0;
     max-height: 100vh;
-}
-
-.word-test-button {
-    display: table-cell;
-    vertical-align: middle;
-    text-align: center;
-
-    width: 100px;
-    height: 50px;
-
-    padding: 2px;
-    margin-right: 10px;
-
-    background-color: #fefaf6ff;
-    color: #102c57ff;
-    border-style: solid;
-    border-color: #dac0a3ff;
-    border-radius: 10px;
-}
-
-#colorcategories-intro-col {
-    position: relative;
-}
-
-#colorcategories-col {
-    position: relative;
-}
-
-#sentenceorder-col {
-    position: relative;
-}
-
-#welcome-col {
-    position: relative;
-}
-
-#officiallang-col {
-    position: relative;
-}
-
-#genealogy-col {
-    position: relative;
-}
-
-#vowel-col {
-    position: relative;
-}
-
-#cluster-col {
-    position: relative;
-}
-
-.scroll_blinking_text {
-    color: #102c57ff;
-    font-size: 1.5em;
-    position: absolute;
-    bottom: 0px;
-    left: 50%;
-    transform: translate(-50%, 0%);
-    animation: blinker 3s ease-in infinite;
-}
-
-.title_changing_color_text {
-    font-weight: bold;
-    animation: color-changer 4s linear infinite;
-}
-
-@keyframes blinker {
-    50% {
-        opacity: 0;
-    }
-}
-
-@keyframes color-changer {
-    0% {
-        color: #2980b9ff;
-    }
-
-    25% {
-        color: #1e8449ff;
-    }
-
-    50% {
-        color: #f4d03fff;
-    }
-
-    75% {
-        color: #e74c3cff;
-    }
-
-    100% {
-        color: #2980b9ff;
-    }
-}
-
-.word-recipient-area {
-    display: table;
-
-    width: 100px;
-    height: 60px;
-
-    background-color: #dac0a3ff;
-    color: aliceblue;
-    padding: 2px;
-    margin-right: 10px;
-
-    border-radius: 10px;
-
-    align-items: center;
 }
 
 .gjs-grid-row {
@@ -226,54 +107,12 @@ a:visited {
     align-items: stretch;
     flex-direction: row;
     min-height: auto;
-    padding: 10px 0;
 }
 
 .gjs-heading {
     margin: 0;
     color: rgba(29, 40, 55, 1);
 }
-
-/* #officiallang-row {
-    justify-content: center;
-    padding-top: 80px;
-    padding-bottom: 80px;
-    padding-left: 20px;
-    padding-right: 20px;
-}
-
-#officiallang-col {
-    max-width: 1200px;
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-#officiallang-head {
-    font-size: 3rem;
-    text-align: center;
-}
-
-#officiallang-text {
-    padding: 10px;
-    max-width: 750px;
-    margin-bottom: 25px;
-    text-align: center;
-}
-
-#i3vvs {
-    color: black;
-    border-top-left-radius: 35px;
-    border-top-right-radius: 35px;
-    border-bottom-right-radius: 35px;
-    border-bottom-left-radius: 35px;
-    max-width: 100%;
-    margin-top: 38px;
-    margin-right: 38px;
-    margin-bottom: 38px;
-    margin-left: 38px;
-} */
 
 .text-main-content {
     line-height: 30px;
@@ -371,153 +210,6 @@ a:visited {
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
 }
-
-/* 
-#genealogy-head {
-    font-size: 3rem;
-    text-align: center;
-}
-
-#genealogy-text {
-    padding: 10px;
-    max-width: 750px;
-    margin-bottom: 25px;
-    text-align: center;
-}
-
-#genealogy-col {
-    max-width: 1200px;
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-#genealogy-row {
-    justify-content: center;
-    padding-top: 80px;
-    padding-bottom: 80px;
-    padding-left: 20px;
-    padding-right: 20px;
-}
-
-#vowel-head {
-    font-size: 3rem;
-    text-align: center;
-}
-
-#vowel-text {
-    padding: 10px;
-    max-width: 750px;
-    margin-bottom: 25px;
-    text-align: center;
-}
-
-#vowel-col {
-    max-width: 1200px;
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-#vowel-row {
-    justify-content: center;
-    padding-top: 80px;
-    padding-bottom: 80px;
-    padding-left: 20px;
-    padding-right: 20px;
-}
-
-#ijfii9 {
-    max-width: 1200px;
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-#iu8h8t {
-    justify-content: center;
-    padding-top: 80px;
-    padding-bottom: 80px;
-    padding-left: 20px;
-    padding-right: 20px;
-}
-
-#cluster-head {
-    font-size: 3rem;
-    text-align: center;
-}
-
-#cluster-text {
-    padding: 10px;
-    max-width: 750px;
-    margin-bottom: 25px;
-    text-align: center;
-}
-#cluster-col {
-    max-width: 1200px;
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-#cluster-row {
-    justify-content: center;
-    padding-top: 80px;
-    padding-bottom: 80px;
-    padding-left: 20px;
-    padding-right: 20px;
-}
-
-#iz8m8 {
-    align-self: center;
-}
-
-.gjs-divider {
-    height: 3px;
-    width: 100%;
-    margin: 10px;
-    background-color: rgba(0, 0, 0, 0.05);
-}
-
-#ib541 {
-    justify-content: center;
-}
-
-#iepks {
-    align-self: center;
-}
-
-#order-head {
-    font-size: 3rem;
-    text-align: center;
-}
-
-#order-text {
-    padding: 10px;
-    max-width: 750px;
-    margin-bottom: 25px;
-    text-align: center;
-}
-
-#order-col {
-    max-width: 1200px;
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-#order-row {
-    justify-content: center;
-    padding-top: 80px;
-    padding-bottom: 80px;
-    padding-left: 20px;
-    padding-right: 20px;
-} */
 
 @media (max-width: 992px) {
     .gjs-grid-row {
