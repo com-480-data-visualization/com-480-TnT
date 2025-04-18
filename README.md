@@ -73,3 +73,49 @@ Previous studies have explored music genre classification and recommendation sys
 # Milestone 2
 
 _PASTE HERE THE MILESTONE 2 WHEN FINISHED_
+
+# COM-480 : Milestone 2  
+April 2025  
+
+## Visualisation 1: Genre Bubbles:
+The first idea is to visualize music styles through an interactive and animated bubble chart. We start with a global view of main genres, mapped by energy and danceability. Clicking on a genre zooms in to reveal its subgenres, and then individual tracks. Each step dives deeper into the music world — from vibe to detail — ending with full info on a selected song: artist, likes, lyrics, and more.  
+**Tools:** D3, Vue.js, Vuetify, Plotly.js, Pandas (Python)  
+**Related lectures:** “Interaction”, “Perception colors”, “designing viz”, “sound viz”
+
+## Visualisation 2: most common words
+Next, we explore global music preferences through an interactive map.  
+In the default view, each country is colored based on its most listened-to genre. Users can filter by genre — for example, selecting only rap will highlight countries by rap popularity, from dark blue (high) to light blue (low).  
+Clicking on a country reveals two things:  
+- A pie chart showing the detailed breakdown of genre listenership, offering insight into local musical diversity.  
+- A Top 10 race-style ranking graph, showing the evolution of the most popular songs month by month for that country. This dynamic visualisation lets users follow how hits rise or fall over time, just like a race.  
+
+**Tools:** D3, Vue.js, Vuetify  
+**Related lectures:** “Practical maps”, “Interaction”,  “Perception colors”
+
+## Visualisation 3: Most Used Words in Lyrics
+This visualization aims to explore the most frequently used words in song lyrics, based on selected filters. Users will be able to choose filters such as music genre, artist gender, or time period, and the graph will update accordingly to highlight the dominant vocabulary. For example, selecting rap and male artists will show the most common words used in that subset of songs, while switching to pop and female artists will reveal a different set of lyrical trends. The goal is to uncover how themes, expressions, or vocabulary vary across genres, genders, and eras — providing a linguistic portrait of modern music.
+
+## Extra Ideas
+### Explore Page:
+We would like to add a page dedicated to exploring the dataset. The idea is a search bar where the user can search for a song, an artist, a country, a year, etc, and different visualisations would appear depending on the search. It would show statistics from the dataset, rankings, etc.  
+This idea includes thinking about the different visualisations for the different types of searches, and thus might be a lot of work. But it could be a nice addition.
+
+### Generate text:
+We could also generate a short and funny summary of a chosen song
+
+## Website Description
+For this project, we’ll use the Spotify Charts and Spotify Tracks datasets. The Charts dataset includes all Top200 and Viral50 charts published by Spotify since 2017. Every 4–5 days, Spotify updates the top 200 most-streamed songs and the 50 most viral songs (i.e., fastest-growing in streams) per country. Each entry includes the song title, artist, number of streams (for Top200), chart type, rank, region, and date.  
+The Tracks dataset complements this by providing details on around 90,000 songs — including album, genres, and audio features like danceability, energy, and duration. By matching songs using their IDs, we can analyse trends such as the evolution of danceability in the Top200.  
+Our website will offer users interactive ways to explore the Spotify Charts over the years. Its design is inspired by this past project. We aim to tell a compelling story about how music and listener preferences evolve, with visualisations placed to support the narrative. As a minimum viable product, we’ll ensure that the visualisations are functional and fun to play with, even without the full story.
+
+## Implementation  
+To implement our website, we have defined the following work packages:
+
+### Data Story:
+The goal is to define what story we are going to tell and write it. This is purely writing text and finding interesting things to talk about around our dataset.
+
+### Visualisations:
+The goal here is to implement the different visualisations that we have defined. This is likely going to be separated into sub-tasks for each individual visualisation.
+
+### Website:
+The goal is to style the website (make it look pretty) and take care of including the data story and the visualisations when they are done.
