@@ -89,6 +89,7 @@ In the default view, each country is colored based on its most listened-to genre
 Clicking on a country reveals two things:  
 - A pie chart showing the detailed breakdown of genre listenership, offering insight into local musical diversity.  
 - A Top 10 race-style ranking graph, showing the evolution of the most popular songs month by month for that country. This dynamic visualisation lets users follow how hits rise or fall over time, just like a race.  
+![Image2](https://github.com/user-attachments/assets/7ee66b42-9559-4d50-910e-8aaa4144b15f)
 
 **Tools:** D3, Vue.js, Vuetify  
 **Related lectures:** “Practical maps”, “Interaction”,  “Perception colors”
