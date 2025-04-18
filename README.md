@@ -2,6 +2,10 @@ Com-480 Data Visualization Course, EPFL.
 
 Project page of group TnT (Théo & Théo) and Caro en fait!
 
+[Milestone 1](#milestone-1)
+
+[Milestone 2](#milestone-2)
+
 ## Milestone 1
 
 ### Dataset
@@ -65,3 +69,7 @@ Previous studies have explored music genre classification and recommendation sys
 - [Exploring the tale of music through data visualization](https://www.analyticsvidhya.com/blog/2020/12/exploring-the-tale-of-music-through-data-visualization/): Cool little story telling website that resembles what we have in mind but may be a bit too simple in terms of data visualization.
 - [History of Rock'n'roll in 100 songs](https://www.svds.com/rockandroll/#thebeatles): A visualization tracing the milestones in the evolution of rock and roll, highlighting influential artists and tracks. Uses some nice linked data which could be an inspiration.
 - [Music feature visualization](https://sreeranjanid.github.io/): An interactive tool allowing users to explore the history of music genres from 1930 to 2020, highlighting characteristics and popularity trends. Nice interactions.
+
+# Milestone 2
+
+_PASTE HERE THE MILESTONE 2 WHEN FINISHED_
