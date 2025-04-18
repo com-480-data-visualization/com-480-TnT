@@ -79,9 +79,10 @@ April 2025
 
 ## Visualisation 1: Genre Bubbles:
 The first idea is to visualize music styles through an interactive and animated bubble chart. We start with a global view of main genres, mapped by energy and danceability. Clicking on a genre zooms in to reveal its subgenres, and then individual tracks. Each step dives deeper into the music world — from vibe to detail — ending with full info on a selected song: artist, likes, lyrics, and more.  
+![Image1](https://github.com/user-attachments/assets/4a3632b2-2d79-43cf-83b4-9a00f53a791c)
 **Tools:** D3, Vue.js, Vuetify, Plotly.js, Pandas (Python)  
 **Related lectures:** “Interaction”, “Perception colors”, “designing viz”, “sound viz”
-![Image1](https://github.com/user-attachments/assets/4a3632b2-2d79-43cf-83b4-9a00f53a791c)
+
 
 ## Visualisation 2: most common words
 Next, we explore global music preferences through an interactive map.  
