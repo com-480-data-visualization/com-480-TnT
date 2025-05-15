@@ -70,11 +70,7 @@ Previous studies have explored music genre classification and recommendation sys
 - [History of Rock'n'roll in 100 songs](https://www.svds.com/rockandroll/#thebeatles): A visualization tracing the milestones in the evolution of rock and roll, highlighting influential artists and tracks. Uses some nice linked data which could be an inspiration.
 - [Music feature visualization](https://sreeranjanid.github.io/): An interactive tool allowing users to explore the history of music genres from 1930 to 2020, highlighting characteristics and popularity trends. Nice interactions.
 
-# Milestone 2
-
-_PASTE HERE THE MILESTONE 2 WHEN FINISHED_
-
-# COM-480 : Milestone 2  
+## Milestone 2  
 April 2025  
 
 ## Visualisation 1: Genre Bubbles:
