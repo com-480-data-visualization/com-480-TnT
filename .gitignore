@@ -1,3 +1,5 @@
 *.zip
 *.csv
 *.pkl
+client_secret.txt
+failed.txt
