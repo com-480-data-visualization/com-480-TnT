@@ -1,3 +1,4 @@
+// Mapping from country codes with 3-letter ISO codes to 2-letter codes
 const alpha3ToAlpha2 = {
   "ARG": "AR", "AUS": "AU", "AUT": "AT", "BLR": "BY", "BEL": "BE",
   "BOL": "BO", "BRA": "BR", "BGR": "BG", "CAN": "CA", "CHL": "CL",
@@ -16,10 +17,89 @@ const alpha3ToAlpha2 = {
   "USA": "US", "VEN": "VE", "VNM": "VN"
 };
 
+const alpha3ToCountryName = {
+  "ARG": "Argentina",
+  "AUS": "Australia",
+  "AUT": "Austria",
+  "BLR": "Belarus",
+  "BEL": "Belgium",
+  "BOL": "Bolivia",
+  "BRA": "Brazil",
+  "BGR": "Bulgaria",
+  "CAN": "Canada",
+  "CHL": "Chile",
+  "COL": "Colombia",
+  "CRI": "Costa Rica",
+  "CYP": "Cyprus",
+  "CZE": "Czech Republic",
+  "DNK": "Denmark",
+  "DOM": "Dominican Republic",
+  "ECU": "Ecuador",
+  "EGY": "Egypt",
+  "SLV": "El Salvador",
+  "EST": "Estonia",
+  "FIN": "Finland",
+  "FRA": "France",
+  "DEU": "Germany",
+  "GRC": "Greece",
+  "GTM": "Guatemala",
+  "HND": "Honduras",
+  "HKG": "Hong Kong",
+  "HUN": "Hungary",
+  "ISL": "Iceland",
+  "IND": "India",
+  "IDN": "Indonesia",
+  "IRL": "Ireland",
+  "ISR": "Israel",
+  "ITA": "Italy",
+  "JPN": "Japan",
+  "KAZ": "Kazakhstan",
+  "LVA": "Latvia",
+  "LTU": "Lithuania",
+  "LUX": "Luxembourg",
+  "MYS": "Malaysia",
+  "MEX": "Mexico",
+  "MAR": "Morocco",
+  "NLD": "Netherlands",
+  "NZL": "New Zealand",
+  "NIC": "Nicaragua",
+  "NGA": "Nigeria",
+  "NOR": "Norway",
+  "PAK": "Pakistan",
+  "PAN": "Panama",
+  "PRY": "Paraguay",
+  "PER": "Peru",
+  "PHL": "Philippines",
+  "POL": "Poland",
+  "PRT": "Portugal",
+  "ROU": "Romania",
+  "SAU": "Saudi Arabia",
+  "SGP": "Singapore",
+  "SVK": "Slovakia",
+  "ZAF": "South Africa",
+  "KOR": "South Korea",
+  "ESP": "Spain",
+  "SWE": "Sweden",
+  "CHE": "Switzerland",
+  "TWN": "Taiwan",
+  "THA": "Thailand",
+  "TUR": "Turkey",
+  "ARE": "United Arab Emirates",
+  "UKR": "Ukraine",
+  "GBR": "United Kingdom",
+  "URY": "Uruguay",
+  "USA": "United States",
+  "VEN": "Venezuela",
+  "VNM": "Vietnam"
+};
+
+
+// Color map and scale for the artists/tracks
 const colors = new Map();
 const colorScale = d3.scaleOrdinal(d3.schemeTableau10);
 
-const artistInfoDiv = d3.select("#artist-info");
+const countryInfoDiv = d3.select("#country-info");
+const globalInfoDiv = d3.select("#global-info");
 const svg = d3.select("svg");
 const tooltip = d3.select("#tooltip");
 const width = window.innerWidth;
@@ -62,7 +142,8 @@ function updateMode() {
   loadDataAndRender(year, mode, "mode");
 }
 
-loadDataAndRender(2025, "artist"); // Initial load with artist mode and year 2025
+// Initial load with artist mode and year 2025
+loadDataAndRender(2025, "artist", "mode"); 
 
 function loadDataAndRender(year, mode, changed) {
   const jsonDataset = mode === "artist" ? "top10_artist_by_country.json" : "top10_track_by_country.json";
@@ -86,15 +167,19 @@ function loadDataAndRender(year, mode, changed) {
     const currentYear = year
     yearSelect.property("value", year); // Set the selected year
 
+    updateGlobalTop10(data, currentYear, mode);
+    
+    if (changed === "mode") {
+      // Clear the colors map if the mode changes
+      colors.clear();
+      // Clear artist info if mode changes
+      countryInfoDiv.html('<p>No data available for this country</p>'); 
+    }
+    
     const top1Names = new Set();
     for (const country in data[currentYear]) {
       const top1 = data[currentYear][country]["1"];
       if (top1?.name) top1Names.add(top1.name);
-    }
-
-    if (changed === "mode") {
-      // Clear the colors map if the mode changes
-      colors.clear();
     }
 
     // Add missing names to the map
@@ -117,11 +202,7 @@ function loadDataAndRender(year, mode, changed) {
         const alpha2Code = alpha3ToAlpha2[countryCode];
         const top1 = data[currentYear]?.[alpha2Code]?.["1"];
         d.color = colors.get(top1?.name) || "#ccc"; // Default color if no data
-
-        if (top1) {
-          return colors.get(top1.name) || "#ccc"; // Use color from map or default to gray
-        }
-        return "#ccc"; // Default color for countries with no data
+        return d.color;
       }
       )
       .attr("stroke", "#333")
@@ -159,19 +240,19 @@ function loadDataAndRender(year, mode, changed) {
       .on("click", function (event, d) {
         const countryCode = d.id;
         const alpha2Code = alpha3ToAlpha2[countryCode];
-        const top10Artists = data[currentYear]?.[alpha2Code];
+        const top10 = data[currentYear]?.[alpha2Code];
   
-        console.log(artistInfoDiv)
-  
-        if (top10Artists) {
-          const topArtist = top10Artists["1"];
-          const others = Object.values(top10Artists).slice(1);
-          artistInfoDiv.html(`
-        <h2 style="margin-bottom: 10px;">Top 10 Artists</h2>
+        title = mode == "artist" ? "Top 10 Artists" : "Top 10 Tracks"; 
+        title = `${title} in ${d.properties.name}`;
+        if (top10) {
+          const top1 = top10["1"];
+          const others = Object.values(top10).slice(1);
+          countryInfoDiv.html(`
+        <h2 style="margin-bottom: 10px;">${title}</h2>
         <div style="display: flex; align-items: center; margin-bottom: 20px;">
-          <img src="${topArtist.image}" alt="${topArtist.name}" style="width: 60px; height: 60px; border-radius: 8px; margin-right: 10px;">
+          <img src="${top1.image}" alt="${top1.name}" style="width: 60px; height: 60px; border-radius: 8px; margin-right: 10px;">
           <div>
-            <div style="font-weight: bold;">#1 ${topArtist.name}</div>
+            <div style="font-weight: bold;">1. ${top1.name}</div>
             <div style="font-size: 12px; color: #666;">Most listened artist</div>
           </div>
         </div>
@@ -181,9 +262,34 @@ function loadDataAndRender(year, mode, changed) {
       `);
   
         } else {
-          artistInfoDiv.html(`<p>No data available for this country</p>`);
+          countryInfoDiv.html(`<p>No data available for this country</p>`);
         }
       });
   });
 
+}
+
+function updateGlobalTop10(data, year, mode) {
+  title = mode == "artist" ? "Global Top 10 Artists" : "Global Top 10 Tracks"; 
+
+  const globalTop10 = data[year]["GLOBAL"];
+  if (globalTop10) {
+    const globalTopArtist = globalTop10["1"];
+    const globalOthers = Object.values(globalTop10).slice(1);
+    globalInfoDiv.html(`
+      <h2 style="margin-bottom: 10px;">${title}</h2>
+      <div style="display: flex; align-items: center; margin-bottom: 20px;">
+        <img src="${globalTopArtist.image}" alt="${globalTopArtist.name}" style="width: 60px; height: 60px; border-radius: 8px; margin-right: 10px;">
+        <div>
+          <div style="font-weight: bold;">1. ${globalTopArtist.name}</div>
+          <div style="font-size: 12px; color: #666;">Most listened artist globally</div>
+        </div>
+      </div>
+      <ol style="padding-left: 20px; text-align: left;" start="2">
+        ${globalOthers.map((a,i) => `<li>${a.name}</li>`).join("")}
+      </ol>
+    `);
+  } else {
+    globalInfoDiv.html(`<p>No global data available for this year</p>`);
+  }
 }
