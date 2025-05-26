@@ -119,6 +119,17 @@
   </style>
 </head>
 <body>
+  <div style="height: 50px; display: flex; align-items: center; padding: 0 20px; background: #f9f9f9; border-bottom: 1px solid #ddd;">
+  <label for="year-select" style="margin-right: 10px;">Year:</label>
+  <select id="year-select" style="padding: 5px; margin-right: 20px;">
+  </select>
+
+  <label for="mode-select" style="margin-right: 10px;">Mode:</label>
+  <select id="mode-select" style="padding: 5px;">
+    <option value="artist" selected>Artist</option>
+    <option value="song">Song</option>
+  </select>
+</div>
   <div style="display: flex; height: calc(90vh - 50px);"> <!-- adjust height minus control bar -->
     <!-- Map -->
     <svg style="flex: 1; height: 100%; display: block;"></svg>
