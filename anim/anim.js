@@ -17,97 +17,23 @@ const alpha3ToAlpha2 = {
   "USA": "US", "VEN": "VE", "VNM": "VN"
 };
 
-const alpha3ToCountryName = {
-  "ARG": "Argentina",
-  "AUS": "Australia",
-  "AUT": "Austria",
-  "BLR": "Belarus",
-  "BEL": "Belgium",
-  "BOL": "Bolivia",
-  "BRA": "Brazil",
-  "BGR": "Bulgaria",
-  "CAN": "Canada",
-  "CHL": "Chile",
-  "COL": "Colombia",
-  "CRI": "Costa Rica",
-  "CYP": "Cyprus",
-  "CZE": "Czech Republic",
-  "DNK": "Denmark",
-  "DOM": "Dominican Republic",
-  "ECU": "Ecuador",
-  "EGY": "Egypt",
-  "SLV": "El Salvador",
-  "EST": "Estonia",
-  "FIN": "Finland",
-  "FRA": "France",
-  "DEU": "Germany",
-  "GRC": "Greece",
-  "GTM": "Guatemala",
-  "HND": "Honduras",
-  "HKG": "Hong Kong",
-  "HUN": "Hungary",
-  "ISL": "Iceland",
-  "IND": "India",
-  "IDN": "Indonesia",
-  "IRL": "Ireland",
-  "ISR": "Israel",
-  "ITA": "Italy",
-  "JPN": "Japan",
-  "KAZ": "Kazakhstan",
-  "LVA": "Latvia",
-  "LTU": "Lithuania",
-  "LUX": "Luxembourg",
-  "MYS": "Malaysia",
-  "MEX": "Mexico",
-  "MAR": "Morocco",
-  "NLD": "Netherlands",
-  "NZL": "New Zealand",
-  "NIC": "Nicaragua",
-  "NGA": "Nigeria",
-  "NOR": "Norway",
-  "PAK": "Pakistan",
-  "PAN": "Panama",
-  "PRY": "Paraguay",
-  "PER": "Peru",
-  "PHL": "Philippines",
-  "POL": "Poland",
-  "PRT": "Portugal",
-  "ROU": "Romania",
-  "SAU": "Saudi Arabia",
-  "SGP": "Singapore",
-  "SVK": "Slovakia",
-  "ZAF": "South Africa",
-  "KOR": "South Korea",
-  "ESP": "Spain",
-  "SWE": "Sweden",
-  "CHE": "Switzerland",
-  "TWN": "Taiwan",
-  "THA": "Thailand",
-  "TUR": "Turkey",
-  "ARE": "United Arab Emirates",
-  "UKR": "Ukraine",
-  "GBR": "United Kingdom",
-  "URY": "Uruguay",
-  "USA": "United States",
-  "VEN": "Venezuela",
-  "VNM": "Vietnam"
-};
-
-
 // Color map and scale for the artists/tracks
 const colors = new Map();
-const colorScale = d3.scaleOrdinal(d3.schemeTableau10);
+const colorPalette = d3.schemeTableau10.concat(d3.schemeSet3);
+const colorScale = d3.scaleOrdinal(colorPalette)
 
 const countryInfoDiv = d3.select("#country-info");
 const globalInfoDiv = d3.select("#global-info");
-const svg = d3.select("svg");
+const svg = d3.select("#map-svg")
 const tooltip = d3.select("#tooltip");
 const width = window.innerWidth;
 const height = window.innerHeight;
+console.log(width, height);
 
 const projection = d3.geoMercator()
+  .center([130, -40]) // Adjust the center of the map
   .scale(150)
-  .translate([width / 2, height / 1.5]);
+  .translate([width / 2, height/2]);
 
 const path = d3.geoPath().projection(projection);
 
@@ -173,8 +99,10 @@ function loadDataAndRender(year, mode, changed) {
       // Clear the colors map if the mode changes
       colors.clear();
       // Clear artist info if mode changes
-      countryInfoDiv.html('<p>No data available for this country</p>'); 
+      countryInfoDiv.html('<p>Click on a country for details</p>'); 
     }
+
+    hideDataRace();
     
     const top1Names = new Set();
     for (const country in data[currentYear]) {
@@ -182,12 +110,6 @@ function loadDataAndRender(year, mode, changed) {
       if (top1?.name) top1Names.add(top1.name);
     }
 
-    // Add missing names to the map
-    Array.from(top1Names).forEach((name, i) => {
-      if (!colors.has(name)) {
-        colors.set(name, colorScale(i));
-      }
-    });
 
     // Clear previous paths
     g.selectAll("path").remove();
@@ -201,7 +123,10 @@ function loadDataAndRender(year, mode, changed) {
         const countryCode = d.id;
         const alpha2Code = alpha3ToAlpha2[countryCode];
         const top1 = data[currentYear]?.[alpha2Code]?.["1"];
-        d.color = colors.get(top1?.name) || "#ccc"; // Default color if no data
+        if (!colors.has(top1?.name) && top1) {
+          colors.set(top1?.name, colorScale(top1?.name)); // Assign a new color if not already set
+        }
+        d.color = colors.get(top1?.name) || '#ccc' // Default color if no data
         return d.color;
       }
       )
@@ -241,6 +166,9 @@ function loadDataAndRender(year, mode, changed) {
         const countryCode = d.id;
         const alpha2Code = alpha3ToAlpha2[countryCode];
         const top10 = data[currentYear]?.[alpha2Code];
+
+        makeDataRaceAnimaion(data[currentYear][alpha2Code]);
+
   
         title = mode == "artist" ? "Top 10 Artists" : "Top 10 Tracks"; 
         title = `${title} in ${d.properties.name}`;
@@ -250,10 +178,10 @@ function loadDataAndRender(year, mode, changed) {
           countryInfoDiv.html(`
         <h2 style="margin-bottom: 10px;">${title}</h2>
         <div style="display: flex; align-items: center; margin-bottom: 20px;">
-          <img src="${top1.image}" alt="${top1.name}" style="width: 60px; height: 60px; border-radius: 8px; margin-right: 10px;">
+          <img src="${top1.image_link}" alt="${top1.name}" style="width: 60px; height: 60px; border-radius: 8px; margin-right: 10px;">
           <div>
             <div style="font-weight: bold;">1. ${top1.name}</div>
-            <div style="font-size: 12px; color: #666;">Most listened artist</div>
+            <div style="font-size: 12px; color: #666;">Most listened ${mode}</div>
           </div>
         </div>
         <ol style="padding-left: 20px; text-align: left;" start="2">
@@ -279,10 +207,10 @@ function updateGlobalTop10(data, year, mode) {
     globalInfoDiv.html(`
       <h2 style="margin-bottom: 10px;">${title}</h2>
       <div style="display: flex; align-items: center; margin-bottom: 20px;">
-        <img src="${globalTopArtist.image}" alt="${globalTopArtist.name}" style="width: 60px; height: 60px; border-radius: 8px; margin-right: 10px;">
+        <img src="${globalTopArtist.image_link}" alt="${globalTopArtist.name}" style="width: 60px; height: 60px; border-radius: 8px; margin-right: 10px;">
         <div>
           <div style="font-weight: bold;">1. ${globalTopArtist.name}</div>
-          <div style="font-size: 12px; color: #666;">Most listened artist globally</div>
+          <div style="font-size: 12px; color: #666;">Most listened ${mode} globally</div>
         </div>
       </div>
       <ol style="padding-left: 20px; text-align: left;" start="2">
@@ -292,4 +220,127 @@ function updateGlobalTop10(data, year, mode) {
   } else {
     globalInfoDiv.html(`<p>No global data available for this year</p>`);
   }
+}
+
+function makeDataRaceAnimaion(data) {
+  var margin = { top: 10, right: 30, bottom: 30, left: 60 },
+      width = window.innerWidth / 2 - margin.left - margin.right,
+      height = 250 - margin.top - margin.bottom;
+
+  // Remove the previous axis
+  
+  const svg = d3.select('#rankingChart')
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+
+  svg.selectAll("*").remove(); // Clear previous content
+
+  const g = svg.append("g")
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+  
+  dates = Object.keys(data).map(rank => Object.keys(data[rank].evolution)).flat().sort();
+  dates = [...new Set(dates)]; // Remove duplicates
+  
+  ranks = Object.keys(data).map(rank => Object.values(data[rank].evolution)).flat();
+  ranks = [...new Set(ranks)]; // Remove duplicates
+
+  console.log(dates, ranks);
+
+  g.selectAll("*").remove(); // Clear previous content
+
+  individuals = Object.keys(data)
+
+  var x = d3.scalePoint()
+    .domain(dates)
+    .range([0, width]);
+  g.append("g")
+    .attr("transform", "translate(0," + height + ")")
+    .call(d3.axisBottom(x))
+    .selectAll("text")
+    .attr("transform", "rotate(-45)")
+    .attr("text-anchor", "end");
+
+  var y = d3.scaleLinear()
+    .domain([1, d3.max(ranks)])
+    .range([0, height]);
+  g.append("g")
+    .call(d3.axisLeft(y).ticks(5));
+
+  const lines = individuals.map(individual => {
+    const indDates = Object.keys(data[individual].evolution).sort();
+    const lineData = indDates.map(date => {
+
+      if (!colors.has(data[individual].name)) {
+        colors.set(data[individual].name, colorScale(data[individual].name)); // Assign a new color if not already set
+      }
+
+      return {
+        date: date,
+        rank: data[individual].evolution[date],
+        name: data[individual].name,
+        color: colors.get(data[individual].name)
+      }
+    });
+    return lineData;
+  });
+
+  console.log(lines);
+  const line = d3.line()
+    .x(d => x(d.date))
+    .y(d => y(d.rank));
+
+  // Create path elements, initially empty
+  const paths = g.selectAll(".line")
+    .data(lines)
+    .enter()
+    .append("path")
+    .attr("fill", "none")
+    .attr("stroke", d => d[0].color)
+    .attr("stroke-width", 1.5);
+
+  let step = 1;
+  const maxSteps = dates.length;
+
+
+  function updateLines(step) {
+    paths.attr("d", d => line(d.slice(0, step)));
+  }
+
+  const interval = 300;
+  const timer = d3.interval(() => {
+    updateLines(step);
+    step++;
+    if (step > maxSteps) {
+      timer.stop();
+      drawLabels();
+    }
+  }, interval)
+
+  // Add axis titles
+  const chartHeight = height - margin.top - margin.bottom;
+
+  g.append("text")
+      .attr("class", "axis-label")
+      .attr("transform", `translate(-40, ${chartHeight}) rotate(-90)`)
+      .text("Ranking Position");
+  
+  function drawLabels() {
+    g.selectAll(".label")
+      .data(lines)
+      .enter()
+      .append("text")
+      .attr("class", "label")
+      .attr("x", d => x(d[d.length - 1].date) + 5)
+      .attr("y", d => y(d[d.length - 1].rank))
+      .text(d => `#${d[d.length-1].rank} ${d[0].name}`)
+      .attr("fill", d => d[0].color)
+      .attr("font-size", "12px")
+      .attr("dy", ".35em");
+  }
+
+}
+
+function hideDataRace() {
+  d3.select("#rankingChart").selectAll("*").remove();
 }

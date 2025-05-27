@@ -1,41 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <title>D3 World Map with Top Artist Hover</title>
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <link rel="stylesheet" href="anim.css">
-   
+
 </head>
+
 <body>
-<div id="anim-container">
-  <div id="controls">
-    <label for="year-select">Year:</label>
-    <select id="year-select"></select>
+  <div id="anim-container" style="display: flex;">
+    <div id="controls">
+      <label for="year-select">Year:</label>
+      <select id="year-select"></select>
 
-    <label for="mode-select">Type:</label>
-    <select id="mode-select">
-      <option value="artist" selected>Artist</option>
-      <option value="song">Song</option>
-    </select>
-  </div>
+      <label for="mode-select">Type:</label>
+      <select id="mode-select">
+        <option value="artist" selected>Artist</option>
+        <option value="song">Song</option>
+      </select>
+    </div>
 
-  <div style="display: flex; height: calc(90vh - 50px);">
-    <!-- Map -->
-    <svg id="map-svg"></svg>
+    <div id="map-and-chart">
+      <!-- Map -->
+      <svg id="map-svg"></svg>
+      <div id="ranking-container">
+        <svg id="rankingChart" style="width:100%;"></svg>
+      </div>
 
+    </div>
     <!-- Info panel container stacking country-info and global-info vertically -->
     <div id="info-container">
+      <div id="global-info"></div>
       <div id="country-info">
         <p id="placeholder-message">Click on a country for details</p>
       </div>
-      <div id="global-info"></div>
     </div>
+    <div class="tooltip" id="tooltip"></div>
+
+
+
+    <script src="anim.js"></script>
   </div>
-
-  <div class="tooltip" id="tooltip"></div>
-
-  <script src="anim.js"></script>
-</div>
 </body>
+
 </html>
