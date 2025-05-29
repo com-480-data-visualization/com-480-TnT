@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Lyrics Word Frequency</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div id="main-layout">
+
+        <div class="side-panel text-box" id="text-panel">
+            <h2>What This Means</h2>
+            <p>
+                The visualization shows the most frequent words used in song lyrics across different genres.
+                On the left, you can see how verbose the lyrics tend to be — some genres favor denser lyrics,
+                while others are more minimalistic. Together, these tools let you explore lyrical content trends in
+                modern music.<br><br><br>
+                TODO change this
+            </p>
+        </div>
+
+        <div id="viz-1">
+
+            <h1>Top Lyrics Words by Genre</h1>
+
+            <div class="filter-box">
+                <!-- Genre and # of Words column -->
+                <div class="filter-col">
+                    <div>
+                        <button id="selectAllGenresBtn">Select All Genres</button>
+                    </div>
+                    <label>Genre:</label>
+                    <div class="fancy-select" id="fancyGenre" style="margin-bottom:18px;">
+                        <div class="selected" id="genreSelectedText">Select a genre</div>
+                        <div class="dropdown" id="genreDropdown"></div>
+                    </div>
+                    <label for="numWords"># of Words: <span id="wordCount">100</span></label>
+                    <input type="range" id="numWords" min="20" max="200" step="10" value="100" />
+                </div>
+                <!-- Liveness, Danceability, and Year column -->
+                <div class="filter-col">
+                    <label for="liveSlider">Liveness ≤ <span id="liveValue">1.0</span></label>
+                    <input type="range" id="liveSlider" min="0" max="1" step="0.01" value="1"
+                        style="margin-bottom:18px;" />
+                    <label for="danceSlider">Danceability ≥ <span id="danceValue">0.5</span></label>
+                    <input type="range" id="danceSlider" min="0" max="1" step="0.01" value="0.5"
+                        style="margin-bottom:18px;" />
+                    <label for="yearSlider">After year <span id="yearValue">2000</span></label>
+                    <input type="range" id="yearSlider" min="1950" max="2023" step="1" value="2000"
+                        style="width:350px;" />
+                </div>
+            </div>
+
+            <div id="genreTitle"></div>
+            <div id="wordContainer"></div>
+
+            <script src="script.js"></script>
+        </div>
+
+        <div class="side-panel" id="chart-panel" style="text-align: center;">
+            <h2>Avg. Words per Song</h2>
+            <div id="wordsPerGenreContainer"></div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

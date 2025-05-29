@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Genre and subgenre exploration</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h2>Genre and subgenre exploration</h2>
+    <div id="main-layout">
+        <div class="text-box">
+            <h2>About</h2>
+            <p>
+                This visualization allows you to explore the relationships between music genres and their subgenres.
+                The Sankey diagram illustrates how different genres connect to their respective subgenres, providing insights into the diversity and evolution of musical styles.
+            </p>
+        </div>
+        <div id="viz-sankey">
+            <div id="error"></div>
+            <svg id="sankey"></svg>
+        </div>
+    </div>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/d3-sankey@0.12.3/dist/d3-sankey.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
