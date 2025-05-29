@@ -1,0 +1,221 @@
+body {
+  font-family: "Segoe UI", sans-serif;
+  background-color: transparent;
+  color: #222;
+  text-align: center;
+  margin: 20px;
+} 
+
+canvas {
+  max-width: 100%;
+}
+
+#main-layout {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 2em;
+  gap: 2em;
+}
+
+.side-panel {
+  flex: 1;
+  max-width: 25%;
+}
+
+.text-box {
+  max-width: 25%;
+  font-size: 1.1em;
+  line-height: 1.5;
+  text-align: left;
+}
+
+#viz-1 {
+  width: 50%;
+}
+
+.filter-box {
+  background: #f7f7fa;
+  border: 2px solid #d0d0e0;
+  border-radius: 18px;
+  box-shadow: 0 2px 12px #0001;
+  padding: 20px 5px 18px 5px;
+  margin: 30px auto 18px auto;
+  width: 90%;
+  max-width: 900px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.filter-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 100px;
+}
+.fancy-select {
+  position: relative;
+  display: inline-block;
+  width: 200px;
+  text-align: left;
+}
+.fancy-select .selected {
+  background: #fff;
+  border: 2px solid #bbb;
+  border-radius: 8px;
+  padding: 10px 12px;
+  cursor: pointer;
+  font-weight: 600;
+  color: #444;
+  transition: border 0.2s;
+}
+.fancy-select .selected:hover {
+  border: 2px solid #888;
+}
+.fancy-select .dropdown {
+  display: none;
+  position: absolute;
+  background: #fff;
+  border: 2px solid #bbb;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px #0002;
+  z-index: 10;
+  width: 100%;
+  max-height: 220px;
+  overflow-y: auto;
+  margin-top: 4px;
+}
+.fancy-select.open .dropdown {
+  display: block;
+}
+.fancy-select .dropdown label {
+  display: flex;
+  align-items: center;
+  padding: 7px 12px;
+  cursor: pointer;
+  font-weight: 500;
+  color: #333;
+}
+.fancy-select .dropdown label:hover {
+  background: #f0f0f8;
+}
+.fancy-select input[type="checkbox"] {
+  margin-right: 10px;
+}
+label, select, input {
+  margin: 5px;
+  color: #444;
+  font-weight: 600;
+}
+#wordContainer {
+  max-width: 1000px;
+  min-height: 400px;
+  margin: 40px auto;
+  padding: 20px;
+  text-align: justify;
+  line-height: 1.7em;
+  color: #333;
+}
+.word {
+  display: inline;
+  margin-right: 10px;
+  transition: transform 0.15s cubic-bezier(.4,2,.6,1), box-shadow 0.15s;
+  cursor: pointer;
+}
+.word:hover {
+  transform: scale(1.35);
+  z-index: 2;
+  box-shadow: 0 2px 12px #0002;
+  background: #f7f7fa;
+  border-radius: 6px;
+}
+#genreTitle {
+  font-size: 1.3em;
+  font-weight: bold;
+  margin-top: 30px;
+  color: #555;
+  margin-bottom: 10px;
+  word-break: break-word;
+  line-height: 1.5em;
+}
+#liveValue, #danceValue, #yearValue, #wordCount {
+  color: #666;
+  font-weight: 600;
+  margin-left: 5px;
+}
+input[type=range] {
+  width: 300px;
+  height: 8px;
+  -webkit-appearance: none;
+  background: #ddd;
+  border-radius: 5px;
+  outline: none;
+  margin-top: 5px;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #666;
+  cursor: pointer;
+  border-radius: 50%;
+  border: 2px solid #444;
+  margin-top: -6px;
+  transition: background 0.3s ease;
+}
+input[type=range]::-webkit-slider-thumb:hover {
+  background: #333;
+}
+input[type=range]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: #666;
+  cursor: pointer;
+  border-radius: 50%;
+  border: 2px solid #444;
+  transition: background 0.3s ease;
+}
+input[type=range]::-moz-range-thumb:hover {
+  background: #333;
+}
+@media (max-width: 700px) {
+  .filter-box { flex-direction: column; align-items: stretch; }
+  .filter-col { min-width: unset; }
+  #genreTitle { font-size: 1em; }
+}
+#selectAllGenresBtn {
+  margin-bottom: 8px;
+  border-radius: 6px;
+  border: 1px solid #bbb;
+  background: #f5f5fa;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 6px 12px;
+  margin-right: 8px;
+}
+/* Bar chart styles */
+#wordsPerGenreContainer {
+  max-width: 1200px;
+  margin: 40px auto 0 auto;
+}
+.bar-label {
+  font-size: 1em;
+  fill: #444;
+  font-weight: 600;
+}
+.bar-avg {
+  font-size: 1em;
+  fill: #f9a825;
+}
+.bar-highlight {
+  fill: #ffb300 !important;
+  font-weight: bold;
+}
+.bar-label-highlight {
+  fill: #ffb300 !important;
+  font-weight: bold;
+}
