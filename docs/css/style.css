@@ -10,6 +10,113 @@ section {
     background-color: #fefaf6ff;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
+.viz-nav-buttons {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: 2em;
+    margin: 0;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 66%;
+    z-index: 2;
+}
+
+.viz-nav-button {
+    padding: 1em 2em;
+    background: #ff4081;
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    font-size: 1.2em;
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    transition: background 0.2s, transform 0.2s;
+    cursor: pointer;
+    outline: none;
+}
+
+.viz-nav-button:hover,
+.viz-nav-button:focus {
+    background: #e73370;
+    transform: translateY(-3px) scale(1.04);
+}
+
+#viz-nav-section {
+    background: linear-gradient(rgba(30, 30, 30, 0.7), rgba(30, 30, 30, 0.7)), url('./../assets/woodstock-2-2.jpg') center/cover no-repeat;
+    padding: 0 0 40px 0;
+    color: #fff;
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+}
+
+.viz-nav-title {
+    font-size: 2.2em;
+    font-weight: bold;
+    margin: 1.5em 0 0.5em 0;
+    color: #fff;
+    text-align: center;
+    position: relative;
+    z-index: 3;
+    letter-spacing: 1px;
+}
+
+.gjs-divider {
+    width: 100%;
+    height: 90px;
+    background: rgba(30, 30, 30, 0.85);
+    margin: 0;
+    border: none;
+    display: block;
+    position: relative;
+    z-index: 10;
+}
+
+/* Last page background */
+#officiallang-row-intro-2 {
+    background: url('./../assets/fin.jpg') center/cover no-repeat;
+    min-height: 60vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#officiallang-col-intro-2 {
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 20px;
+    margin: 0 auto 3em auto;
+    width: 22%;
+    min-width: 200px;
+    max-width: 320px;
+    position: absolute;
+    left: 50%;
+    bottom: 40px;
+    transform: translate(-50%, 0);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+    padding: 1.2em 1.2em 1em 1.2em;
+    text-align: center;
+}
+
+@media (max-width: 600px) {
+    #officiallang-col-intro-2 {
+        width: 80%;
+        min-width: 0;
+        max-width: 95vw;
+        font-size: 0.95em;
+    }
+}
+
 img {
     max-height: 100%;
     max-width: 100%;
@@ -20,13 +127,12 @@ img {
 #nav-bar {
     position: fixed;
     top: 0;
-    left: 0; 
-    right: 0; 
-    background-color: 
-    rgb(145, 145, 145); 
-    display: flex; 
-    align-items: center; 
-    justify-content: space-between; 
+    left: 0;
+    right: 0;
+    background-color: #e73370;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     color: white;
     height: 60px;
 }
@@ -36,6 +142,7 @@ img {
     color: white;
     text-decoration: none;
 }
+
 .title:link {
     text-decoration: none;
     color: white;
@@ -46,19 +153,22 @@ img {
     height: 60px;
     padding: 15px;
     align-items: center;
-    font-size: 1.25em;  
+    font-size: 1.25em;
     margin-right: 10px;
     text-decoration: none;
 }
+
 .nav-button {
     color: white;
     text-decoration: none;
     height: 100%;
 }
+
 .nav-button:visited {
     color: white;
     text-decoration: none;
 }
+
 .nav-button:hover {
     text-decoration: none;
     background-color: #475569;
@@ -68,14 +178,17 @@ img {
 .member {
     margin-left: 10px;
 }
+
 .member:link {
     text-decoration: none;
     font-size: 1.25em;
     color: wheat;
 }
+
 .member:hover {
     text-decoration: underline;
 }
+
 .member:visited {
     color: black;
 }
