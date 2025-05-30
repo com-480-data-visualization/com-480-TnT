@@ -1,18 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <title>Genre and subgenre exploration</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title>Genre and subgenre exploration</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <h2>Genre and subgenre exploration</h2>
     <div id="main-layout">
         <div class="text-box">
             <h2>About</h2>
             <p>
-                This visualization allows you to explore the relationships between music genres and their subgenres.
-                The Sankey diagram illustrates how different genres connect to their respective subgenres, providing insights into the diversity and evolution of musical styles.
+                This visualization invites you to explore the intricate relationships between music genres and their
+                subgenres.
+                The Sankey diagram visually maps out how major genres branch into their respective subgenres,
+                offering insights into the diversity and evolution of musical styles, as well as the cross-influences
+                between different genres.
+                It serves as a dynamic overview of how music has grown, blended, and diversified over time.
+                <br><br>
+                Hover over any node to highlight its connections and reveal the directional flow between genres and
+                subgenres.
+                This interaction helps you trace how certain styles have influenced others and how interconnected
+                the musical landscape is.
             </p>
         </div>
         <div id="viz-sankey">
@@ -20,8 +31,9 @@
             <svg id="sankey"></svg>
         </div>
     </div>
-  <script src="https://d3js.org/d3.v7.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/d3-sankey@0.12.3/dist/d3-sankey.min.js"></script>
-  <script src="script.js"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3-sankey@0.12.3/dist/d3-sankey.min.js"></script>
+    <script src="script.js"></script>
 </body>
+
 </html>

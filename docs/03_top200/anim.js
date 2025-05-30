@@ -27,7 +27,7 @@ const globalInfoDiv = d3.select("#global-info");
 const svg = d3.select("#map-svg")
 const tooltip = d3.select("#tooltip");
 const container = d3.select(".map-and-chart");
-const width = window.innerWidth * 0.58;
+const width = window.innerWidth * 0.48;
 const height = window.innerHeight * 0.58;
 console.log(container)
 const projection = d3.geoMercator()
