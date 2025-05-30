@@ -1,4 +1,4 @@
-Com-480 Data Visualization Course, EPFL. 
+COM-480 Data Visualization Course, EPFL. 
 
 Project page of group TnT (Théo & Théo) and Caro en fait!
 
@@ -122,3 +122,34 @@ The goal here is to implement the different visualisations that we have defined.
 
 ### Website:
 The goal is to style the website (make it look pretty) and take care of including the data story and the visualisations when they are done.
+
+
+## Milestone 3
+
+This is a website built as the milestone of the project for the COM-480 Data Visulization course. See a live preview here: https://com-480-data-visualization.github.io/com-480-TnT/
+
+The website is hosted on GitHub webpages and all the code for the website is hosted in the `docs/` folder.
+
+The process book gives a more technical descpription of how we implemented the website.
+
+Below is the list of all ressources and scripts used for each visualisation.
+
+**Lyrics Visualisation**
+
+- Python data processing files in `docs/01_Lyrics/`
+- Dataset: https://www.kaggle.com/datasets/solomonameh/spotify-music-dataset
+
+**Genre-Net**
+
+- Python data processing files in `docs/02_Genre_net/`
+- Dataset: https://www.kaggle.com/datasets/solomonameh/spotify-music-dataset (same as above)
+
+**Top 200**
+
+- Python data processing files: TODO
+- Dataset: https://drive.google.com/drive/folders/1hMH6wV0M3paqLzgOGU0avR6phsZm7V2h?usp=sharing (scraped)
+
+**Genre Bubbles**
+
+- Python data processing files: `docs/04_Genre_bubbles/`
+- Dataset:  
