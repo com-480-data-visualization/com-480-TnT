@@ -1,0 +1,176 @@
+body {
+    font-family: sans-serif;
+    display: flex;
+    height: 100vh;
+    padding: 2em;
+    margin: 0;
+    align-items: center;
+}
+
+h2 {
+    color: #333;
+    text-align: center;
+}
+
+.text-box {
+    font-size: 1.1em;
+    line-height: 1.5;
+    text-align: left;
+    width: 30%;
+}
+
+p {
+    max-width: 100%;
+}
+
+#mainContainer {
+    width: 100%;
+    height: 90%;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+#animContainer {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: row;
+    padding-top: 10px;
+    box-sizing: border-box;
+}
+
+#title {
+    color: black;
+    font-size: 24px;
+    margin: 0 0 10px;
+    text-align: center;
+}
+
+#backButton {
+    margin-bottom: 10px;
+    padding: 6px 12px;
+    font-size: 24px;
+    border: none;
+    border-radius: 5px;
+    background-color: #666;
+    width: 150px;
+    color: white;
+    cursor: pointer;
+    display: none;
+}
+
+#backButton:hover {
+    background-color: #444;
+}
+
+svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    background-image: url("image/nebula.jpg");
+}
+
+#albumGallery {
+    position: relative;
+    width:100%;
+    height: 100%;
+    display: none;
+    background-image: url("image/nebula.jpg");
+    overflow: hidden;
+}
+
+#svg-div {
+    width: 100%;
+    height: 80%;
+}
+
+#albumGallery img {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s ease;
+}
+
+#albumGallery img:hover {
+    transform: scale(1.2);
+    z-index: 10;
+}
+
+#albumOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+#overlayContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    pointer-events: auto;
+}
+
+#overlayImage {
+    max-width: 300px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+}
+
+#overlayText {
+    color: white;
+    font-size: 20px;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+#playButton {
+    margin-top: 15px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Orbitron', sans-serif;
+    transition: background-color 0.3s ease;
+}
+
+#playButton:hover {
+    background-color: #c0392b;
+}
+
+.bubble {
+    stroke: white;
+    stroke-width: 1px;
+    opacity: 0.9;
+    cursor: pointer;
+    filter: url(#glow);
+}
+
+.label {
+    font-family: 'Arial', sans-serif;
+    font-size: 28px;
+    font-weight: bold;
+    /* ← ici le gras */
+    fill: white;
+    stroke: black;
+    stroke-width: 1px;
+    text-anchor: middle;
+    pointer-events: none;
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Databeats - Map on genres</title>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div id="mainContainer">
+    <div id="animContainer">
+      <div class="text-box">
+        <h2>About</h2>
+        <p>
+          This visualization allows you to explore the relationships between music genres and their subgenres.
+          The Sankey diagram illustrates how different genres connect to their respective subgenres, providing insights
+          into the diversity and evolution of musical styles.
+        </p>
+      </div>
+      <div style="display: flex; flex-direction: column; width: 60%; height: 100%; align-items: center;">
+        <h2 id="title">Genre Bubbles Map</h2>
+        <button id="backButton">&#8592; Back</button>
+        <div id="svg-div">
+          <svg id="chart"></svg>
+          <div id="albumGallery"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="albumOverlay">
+    <div id="overlayContent">
+      <div id="spotifyEmbed" style="margin-top: 20px;"></div>
+
+      <img id="overlayImage" src="" alt="Album" />
+      <p id="overlayText"></p>
+      <button id="playButton">▶️ Play</button>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+
+</html>
