@@ -154,4 +154,4 @@ Below is the list of all ressources and scripts used for each visualisation.
 **Genre Bubbles**
 
 - Python data processing files: `docs/04_Genre_bubbles/`
-- Dataset:  
+- Dataset: https://www.kaggle.com/datasets/maharshipandya/-spotify-tracks-dataset
