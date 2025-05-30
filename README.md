@@ -132,6 +132,8 @@ This is a website built as the milestone of the project for the COM-480 Data Vis
 
 The website is hosted on GitHub webpages and all the code for the website is hosted in the `docs/` folder.
 
+Link to our presentation video: https://drive.google.com/drive/folders/1evckqHDUyh82bgC0K5gE38bFNvAiATMD?usp=sharing
+
 The process book gives a more technical descpription of how we implemented the website.
 
 Below is the list of all ressources and scripts used for each visualisation.
