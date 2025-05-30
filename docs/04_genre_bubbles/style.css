@@ -4,19 +4,22 @@ body {
     height: 100vh;
     padding: 2em;
     margin: 0;
-    align-items: center;
 }
 
 h2 {
-    color: #333;
-    text-align: center;
+  font-size: 2.5rem;
+  color: #23272f;
+  margin: 0;
+  padding-bottom: 10px;
+  text-align: center;
 }
 
 .text-box {
     font-size: 1.1em;
     line-height: 1.5;
-    text-align: left;
-    width: 30%;
+    text-align: justify;
+    padding-right: 20px;
+    width:25%;
 }
 
 p {
@@ -45,12 +48,6 @@ p {
     box-sizing: border-box;
 }
 
-#title {
-    color: black;
-    font-size: 24px;
-    margin: 0 0 10px;
-    text-align: center;
-}
 
 #backButton {
     margin-bottom: 10px;
