@@ -6,6 +6,8 @@ Project page of group TnT (Théo & Théo) and Caro en fait!
 
 [Milestone 2](#milestone-2)
 
+[Milestone 3](#milestone-3)
+
 ## Milestone 1
 
 ### Dataset
